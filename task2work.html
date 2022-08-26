@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tehe Testimonial Page</title>
+    <link rel="stylesheet" href="bcss/bootstrap.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="task2.css">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class ="row">
+        <!-- first section -->
+        <div class="col-7 p-3 bg-light">
+           
+          <!--coming from js  -->
+          <ul id="ulList">
+            <!-- <li class="p-4 bor-style">
+              <h5 class="text-secondary">tejas raut</h5>
+              <p class="text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Odio assumenda praesentium vitae maxime culpa quos, nostrum quae natus exercitationem 
+                ullam.</p>
+            </li> -->
+          </ul>
+          <!--above comming from js  -->
+
+        </div>
+        <!-- second section-->
+        <div class="col-5 p-3">
+          <div>
+            <img
+              src="assets/softlogo5.png"
+              height="40px"
+              width="40"
+              class="border border-3 border-light rounded-circle p-1"
+            />
+            <span class="h6 p-2 text-secondary text-uppercase">WRITE YOUR EXPERIANCE</span>
+          </div>
+            <!-- ratings -->
+            <!-- <p class="mt-4 text-primary font">rating</p>
+              <div class="size">
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>
+                <i class="fa fa-star-o"></i>  
+              </div>
+               -->
+              <!-- form -->
+              <form id="form" name="todoForm">
+              <p class="mt-4 text-primary font rating">rating</p>
+              <div class="size">
+                <li class="star"><i class="fa fa-star"></i></li>               </li>
+                <li class="star"><i class="fa fa-star"></i></li>
+                <li class="star"><i class="fa fa-star"></i></li>
+                <li class="star"><i class="fa fa-star"></i></li>
+                <li class="star"><i class="fa fa-star"></i></li>  
+              </div>
+             
+                <div class="input-contain mt-3">
+                  <input class="p-2" type="text" id="toDoText" name="todo" placeholder="Name">
+                 </div>
+                
+                 <!-- textarea -->
+                 <div class="mt-4 input-contain">
+                   <textarea class="input-container3 p-2" name="testimonial" id="testimonial" cols="38" rows="7" placeholder="Write Your Experiance Here" ></textarea> 
+                 </div>
+                 
+                 <!-- captcha -->
+                 <!-- <p class="h5">Are you human?</p>
+                 <div class="submit__generated">
+                   <img src="assets/capthyalogo.png" alt="">
+                   <i class="fa fa-refresh"></i>
+                 </div>               
+             
+                 <input class=" mt-2 btn btn-outline-secondary"
+                      type="button"
+                      value="Submit"/>                  
+                  -->
+                  <button type="submit" class=" btn1 btn btn-outline-secondary mt-4 m-auto" id="btn">Send</button>
+        
+               </form>            
+               
+                
+
+          </div>
+    </div>
+
+
+    <script src="task2.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <!-- <script src="js/addons/rating.js"></script> -->
+  </body>
+</html>
+
+
+//js
+
+const form = document.getElementById('form')
+let list = document.getElementById("ulList");
+ 
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let todoText = todoForm.elements["todo"].value
+    let areaText = todoForm.elements["testimonial"].value
+    list.innerHTML += `<li class="p-2 mt-4 bor-style text-secondary">
+                        ${todoText}
+                        <div class="size">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>  
+                        </div>
+                    
+                        <p class="mt-3">${areaText}</p>
+                       </li>` 
+    form.reset()
+    console.log(todoText)
+})
+
+
+//Star rating code
+
+const stars = document.querySelector('.star');
+const rating = document.querySelector('.rating');
+
+for (let i = 0; i < stars.length; i++){
+    stars[i].starValue = (i + 1);
+    ["mouseover", "mouseout", "click"].forEach(function (e) {
+        stars[i].addEventListener(e, starRate);
+    })
+}
+
+function starRate(e) {
+    let type = e.type
+    let starValue = this.starValue;
+    if (type === 'click') {
+        if (starValue > 1) {
+                rating.innerHTML = "you rated this" + starValue +"stars"
+            }
+    }
+    stars.forEach(function (ele, ind) {
+        if (type == "click") {
+            if (ind < starValue) {
+                ele.classList.add("fix");
+            }
+            else {
+                ele.classList.remove("fix")
+            }
+        }
+        if (type === "mouseover") {
+            if (ind < starValue) {
+                ele.classList.add("over");
+            }
+            else {
+                ele.classList.remove("over")
+            }
+        }
+        if (type === "mouseout") {
+            ele.classList.remove("over")
+        }
+    })
+}
+
+
+//css
+  
+  
+*{
+    margin: 0;
+    padding: 0;
+}
+.bor-style{
+    border: 10px solid rgb(221, 222, 224);
+    border-radius: 6px;
+    background-color:  rgb(221, 222, 224);
+    list-style: none;
+}
+.btn1{
+    width: 100%;
+}
+.font{
+    font-size: 25px;
+  }
+.size{
+    display:inline-flex;
+    font-size: 26px;
+    list-style: none; 
+ }
+.star{
+ margin: 4px;
+ color: #cfcfcf;    
+}
+.over{
+    color: #f7c56a;
+}
+.fix{
+    color: #ffa600;
+}
+.rating{
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
