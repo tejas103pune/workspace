@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Regina University</title>
+    <link rel="stylesheet" href="linking/bootstrap.css" />
+    <link rel="stylesheet" href="task1.css" />
+    
+    <style></style>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-6">
+            <img src="assets/softlogo4.png" height="100px" width="300px" />
+          </div>
+          <div class="col-6 text-center">
+            <span>
+              <h3>University Of Regina</h3>
+              <p>
+                011 Pushkarna nager,Swami Vivekanand square,<br />
+                dhamangaoun(rly) Dist: Amravati
+              </p>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="container mt-5">
+      <button type="button" id="b1" class="mt-5 btn btn-primary">
+        Add Row
+      </button>
+      <table class="mt-4 table mainTable" width="100%">
+        <thead>
+          <tr>
+            <th>Roll Number</th>
+            <th>Student name</th>
+            <th>Math</th>
+            <th>Science</th>
+            <th>S.S.T</th>
+            <th>Total</th>
+            <th>Percentage</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody id="t1" class="totRows">
+
+        </tbody>
+      </table>
+      <table id="t2" class="mt-5 table" width="100%">
+        <tr>
+          <th>Total Students</th>
+          <th>High Marks</th>
+          <th>Lowest Marks</th>
+          <th>Average Marks</th>
+        </tr>
+        <tr>
+          <td class="roll"></td>
+          <td class="high"></td>
+          <td class="low"></td>
+          <td class="avg"></td>
+        </tr>
+      </table>
+    </main>
+    <!-- <footer></footer> -->
+    <!-- scripts -->
+    <script src="linking/jquery-3.6.1.js"></script>
+    <script src="jqTask1.js"></script>
+    <script src="linking/bootstrap.js"></script>
+  </body>
+</html>

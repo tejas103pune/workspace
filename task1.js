@@ -1,24 +1,3 @@
-// function addRow() {
-//   var table = document.getElementById("t1");
-//   var row = table.insertRow();
-//   var cell1 = row.insertCell();
-//   var cell2 = row.insertCell();
-//   var cell3 = row.insertCell();
-//   var cell4 = row.insertCell();
-//   var cell5 = row.insertCell();
-//   var cell6 = row.insertCell();
-//   var cell7 = row.insertCell();
-//   var cell8 = row.insertCell();
-
-//   cell1.innerHTML = `<td></td>`;
-//   cell2.innerHTML = `<input size ='10'></input>`;
-//   cell3.innerHTML = `<input size ='5' id='m1'></input>`;
-//   cell4.innerHTML = `<input size ='5' id='m2'></input>`;
-//   cell5.innerHTML = `<input size ='5' id='m3'></input>`;
-//   cell6.innerHTML = `<td></td>`;
-//   cell7.innerHTML = `<td></td>`;
-//   cell8.innerHTML = `<input type='button' value='X' onclick=deleteRow() style = "background:red; border-radius: 50px; width:60px"></input>`;
-// }
 
 let table = document.querySelector("#t1");
 let i = 0;
@@ -33,46 +12,13 @@ document.querySelector("#b1").addEventListener("click", function () {
       <td><input size="5" id="math${i}" onchange="findTotal(${i})"></td>
       <td><input size="5" id="science${i}" onchange="findTotal(${i})"></td>
       <td><input size="5" id="sst${i}" onchange="findTotal(${i})"></td>
-      <td calss="totalMarks" id="tot${i}"></td>
+      <td class="totalMarks" id="tot${i}"></td>
       <td id="per${i}"></td>
       <td><input type="button" class="btn btn-danger" value = "DELETE" onclick="deleteRow()">
     </tr>`
   );
-    
+  totalStudentCount()
 });
-function createArrayElements() {
-  let marks = document.getElementsByClassName("totalMarks")
-  let totArray = [];
-  let elem = marks.value
-  console.log(elem)
-  for (let i in totArray){
-     totArray.push(i)
-  }
-
-
-  // console.log(marks)
-  
-  
-  
-  // let elem = marks.value
-  // totArray.push(elem)  
-}
-console.log(createArrayElements())
-// console.log(marks)
-
-// console.log(totArray)
-
-// var x 
-// function addElemnt() {
-//   totArray[x] = document.getElementById(`tot${i}`).value;
-//   console.log(x)
-// }
-// console.log(x)
-
-
-// console.log(elem)
-// totArray.push(elem)
- 
 
 function findTotal(i) {
   const math = Number(document.querySelector(`#math${i}`).value)
@@ -86,26 +32,58 @@ function findTotal(i) {
   // console.log(sum);
 
   let percent = sum / 300 * 100
-  per.innerHTML = parseInt(percent) + "%"
+  per.innerHTML = percent.toFixed(2) + "%"
+
+  createArrayElements()
 }
+
+function createArrayElements() {
+  let totalArray = []
+  const totalMarks = document.querySelectorAll('.totalMarks')
+ 
+  totalMarks.forEach(total => {
+    totalArray.push(total.innerHTML)  
+  })  
+
+  totalArray.sort(function (a, b) { return a - b });
+  const high = document.querySelector('.high')
+  const low = document.querySelector('.low')
+
+  low.innerHTML = totalArray[0]
+  high.innerHTML = totalArray[totalArray.length -1]
+
+  const avrg = document.querySelector('.avg')
+  
+  
+  var sum = 0;
+  for( var i = 0; i < totalArray.length; i++ ){
+  sum += parseInt( totalArray[i], 10 ); //don't forget to add the base
+  } 
+  avrg.innerHTML = parseInt(sum/totalArray.length)
+  console.log(totalArray);
+   
+}
+ 
+
+const totalStudentCount = () => {
+  const mainTable = document.querySelector('.totRows')
+  const totalStudent = mainTable.children.length
+  console.log(totalStudent)
+  document.querySelector('.roll').innerHTML = totalStudent
+}
+
+
+
 
 //delete row function
 function deleteRow() {
-  document.getElementById("t1").deleteRow(1);
+  document.getElementById("t1").deleteRow(0);
 }
 
 
 
 
-// function average() {
-//   let highMarks = Number(document.querySelector("#high").value);
-//   let lowMarks = Number(document.querySelector("#low").value);
-//   let sum = highMarks + lowMarks;
-//   let avg = sum /2
-//   let totavg = document.getElementById("avrg");
-//   totavg.innerHTML = avg;
-//   console.log(avg);
-// }
+
 
 
 
